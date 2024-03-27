@@ -2,15 +2,25 @@ import { downloadImage } from './downloadImage.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-// const API_URL = 'https://api.astria.ai/tunes/690204/prompts';
-const API_URL = 'https://api.astria.ai/tunes/657379/prompts';
+const TUNE_IDS = {
+  CyberRealistic: '657379',
+  RealisticVision: '690204',
+}
+
+
+const API_URL = `https://api.astria.ai/tunes/${TUNE_IDS.CyberRealistic}/prompts`;
 const API_KEY = process.env.ASTRIA_API_KEY;
 const headers = { Authorization: `Bearer ${API_KEY}` }
 
-const gender = 'male, man,'
+const GENDER = {
+  male: 'male, man,',
+  female: 'female, woman',
+}
+  
+
 // const promptText = `realistic digital painting,  astronaut in a garden on a spring day, by martine johanna and simon stalenhag and chie yoshii and casey weldon and wlop, ornate, dynamic, particulate, rich colors, intricate, elegant, highly detailed, harpers bazaar art, fashion magazine, smooth, sharp focus, 8 k, octane rende --mask_prompt face, head --mask_negative clothes, hair --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
 // const promptText = `realistic digital painting, ${gender} space marine, warhammer 40,000, war hammer 40k, storm bolter, terminator armour, apothecary in terminator armour, battle in the background, ornate, dynamic, particulate, rich colors, intricate, highly detailed, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt face, hair, head --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
-const promptText = `realistic digital painting, ${gender} italian, pink hair, ornate, dynamic, particulate, rich colors, intricate, highly detailed, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt face, hair, head --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
+const promptText = `realistic digital painting, ${GENDER.male} italian, pink hair, ornate, dynamic, particulate, rich colors, intricate, highly detailed, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt face, hair, head --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
 // const promptText = `realistic digital painting, ${gender} fireman, firefighter, ornate, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt face, hair, head --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
 
 const form = new FormData();
