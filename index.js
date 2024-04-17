@@ -101,7 +101,7 @@ const generateFormData = (promptArray, imageURL) => {
   const form = new FormData();
   form.append('prompt[text]', promptArray);
   form.append('prompt[num_images]', '1');
-  form.append('prompt[negative_prompt]', 'clay, text, watermark, padding, cropped, typography');
+  form.append('prompt[negative_prompt]', 'clay, text, watermark, padding, cropped, typography, nipples');
   form.append('prompt[seed]', '');
   form.append('prompt[steps]', '30');
   form.append('prompt[cfg_scale]', '');
@@ -155,7 +155,7 @@ const images = {
 const getImage = async () => {
   // TODO: loop through all the prompts
   const apiUrl = generateRandomApiUrl();
-  const form = generateFormData(promptArray[0], images.random);
+  const form = generateFormData(promptArray[0], images.davin);
   console.log('form: ', form)
   try {
     const response = await fetch(apiUrl, {
