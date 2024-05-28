@@ -46,7 +46,7 @@ const GENDER = {
 const PROMPT = {
   astronaut: `astronaut in a garden on a spring day, by martine johanna and simon stalenhag and chie yoshii and casey weldon and wlop, ornate`,
   beerGarden: `Sitting in a beer garden with some drinks`,
-  italian: `italian, pink hair, ornate`,
+  italian: `italian, ornate`,
   fireman: `fireman, firefighter, ornate`,
   formal: `Walking to a formal function in a tuxedo / ball gown, ornate`,
   hike: `On a hike with some trees, nature`,
@@ -70,7 +70,7 @@ const PROMPT = {
 }
 
 const generatePrompt = (prompt, gender) => {
-  return `realistic digital painting, ${gender} ${prompt}, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt face, hair, head --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.1`
+  return `photorealistic, photo, ${gender} ${prompt}, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, smooth, sharp focus, 8 k, octane rende --mask_prompt foreground, face, glasses --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.2`
 }
 
 const generateThreeUniquePrompts = (gender) => {
@@ -101,7 +101,7 @@ const generateFormData = (promptArray, imageURL) => {
   const form = new FormData();
   form.append('prompt[text]', promptArray);
   form.append('prompt[num_images]', '1');
-  form.append('prompt[negative_prompt]', 'clay, text, watermark, padding, cropped, typography, nipples');
+  form.append('prompt[negative_prompt]', 'nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry');
   form.append('prompt[seed]', '');
   form.append('prompt[steps]', '30');
   form.append('prompt[cfg_scale]', '');
@@ -110,17 +110,17 @@ const generateFormData = (promptArray, imageURL) => {
   form.append('prompt[mask_image_url]', '');
   form.append('prompt[denoising_strength]', '');
   form.append('prompt[controlnet_conditioning_scale]', '');
-  form.append('prompt[controlnet_txt2img]', 'false');
-  form.append('prompt[super_resolution]', 'true');
-  form.append('prompt[inpaint_faces]', 'false');
-  form.append('prompt[face_correct]', 'true');
-  form.append('prompt[film_grain]', 'false');
-  form.append('prompt[face_swap]', 'false');
-  form.append('prompt[hires_fix]', 'true');
+  form.append('prompt[controlnet_txt2img]', false);
+  form.append('prompt[super_resolution]', true);
+  form.append('prompt[inpaint_faces]', false);
+  form.append('prompt[face_correct]', true);
+  form.append('prompt[film_grain]', false);
+  form.append('prompt[face_swap]', false);
+  form.append('prompt[hires_fix]', true);
   // form.append('prompt[ar]', 1.1);
   form.append('prompt[scheduler]', 'dpm++sde_karras');
   form.append('prompt[color_grading]', '');
-  form.append('prompt[use_lpw]', 'true');
+  form.append('prompt[use_lpw]', true);
   form.append('prompt[w]', '512');
   form.append('prompt[h]', '768');
   return form;
@@ -149,7 +149,8 @@ const fetchJson = async (url) => {
 
 const images = {
   davin: 'https://therocketlab.github.io/rktlb-signatures/profile-images/davin-lg.jpg',
-  random: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1713312958~exp=1713316558~hmac=83aed9a33b9a59324cfc4fd592a2f3d78f04cacc08a1d8e46b845f24a4654917&w=2000'
+  random: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1713312958~exp=1713316558~hmac=83aed9a33b9a59324cfc4fd592a2f3d78f04cacc08a1d8e46b845f24a4654917&w=2000',
+  tsvi: 'https://therocketlab.github.io/rktlb-signatures/profile-images/selfie.jpg'
 }
 
 const getImage = async () => {
