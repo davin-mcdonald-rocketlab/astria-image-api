@@ -44,18 +44,18 @@ const GENDER = {
 
 // TODO: add camera lens type to the prompt
 const PROMPT = {
-  astronaut: `astronaut in a garden on a spring day, by martine johanna and simon stalenhag and chie yoshii and casey weldon and wlop, ornate`,
+  astronaut: `astronaut in a garden on a spring day, by martine johanna and simon stalenhag and chie yoshii and casey weldon and wlop`,
   beerGarden: `Sitting in a beer garden with some drinks`,
-  italian: `italian, ornate`,
-  fireman: `fireman, firefighter, ornate`,
-  formal: `Walking to a formal function in a tuxedo / ball gown, ornate`,
+  italian: `italian, pink hair`,
+  fireman: `fireman, firefighter`,
+  formal: `Walking to a formal function in a tuxedo / ball gown`,
   hike: `On a hike with some trees, nature`,
   puppies: `Lying with a bunch of puppies, cute, fluffy`,
   surfing: `On a surfboard with a shark in the background, potential danger`,
   karaoke: `Singing karaoke with friends, fun, party, bar, pub`,
   dog: `Snuggling with golden retriever, couch, cute, cozy`,
   machuPichu: `Standing on Machu Pichu with arms in the air, mountains, nature, travel`,
-  martini: `Smirking with a martini in hand, ornate, party, fun`,
+  martini: `Smirking with a martini in hand, party, fun`,
   iceSkating: `Fallen over ice skating and a smile on face, winter, fun, cold`,
   baby: `Holding a crying baby looking nervous but happy, cute, baby, family`,
   gardening: `In a vegetable patch, tending to the plants, nature, gardening`,
@@ -70,7 +70,7 @@ const PROMPT = {
 }
 
 const generatePrompt = (prompt, gender) => {
-  return `photorealistic, photo, ${gender} ${prompt}, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, smooth, sharp focus, 8 k, octane rende --mask_prompt foreground, face, glasses --mask_negative clothes --mask_invert --mask_dilate -20 --hires_denoising_strength 0.2`
+  return `photorealistic, photo, ${gender} ${prompt}, ornate, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt foreground, face, glasses --mask_negative clothes, hair --mask_invert --mask_dilate -20 --hires_denoising_strength 0.2`
 }
 
 const generateThreeUniquePrompts = (gender) => {
@@ -101,7 +101,7 @@ const generateFormData = (promptArray, imageURL) => {
   const form = new FormData();
   form.append('prompt[text]', promptArray);
   form.append('prompt[num_images]', '1');
-  form.append('prompt[negative_prompt]', 'nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry');
+  form.append('prompt[negative_prompt]', 'clay, text, watermark, padding, cropped, typography, nipples, nsfw, lowres, bad anatomy, bad hands, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, username, blurry');
   form.append('prompt[seed]', '');
   form.append('prompt[steps]', '30');
   form.append('prompt[cfg_scale]', '');
