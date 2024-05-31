@@ -70,7 +70,7 @@ const PROMPT = {
 }
 
 const generatePrompt = (prompt, gender) => {
-  return `photorealistic, photo, ${gender} ${prompt}, ornate, dynamic, particulate, rich colors, intricate, highly detailed, realistic, hi-res, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt foreground, face, glasses --mask_negative clothes, hair --mask_invert --mask_dilate -20 --hires_denoising_strength 0.2`
+  return `realistic digital painting, ${gender} ${prompt}, ornate, dynamic, particulate, rich colors, intricate, elegant, highly detailed, realistic, hi-res, harpers bazaar art, smooth, sharp focus, 8 k, octane rende --mask_prompt foreground --mask_negative clothes, hair --mask_invert --mask_dilate -20 --hires_denoising_strength 0.2`
 }
 
 const generateThreeUniquePrompts = (gender) => {
@@ -156,7 +156,7 @@ const images = {
 const getImage = async () => {
   // TODO: loop through all the prompts
   const apiUrl = generateRandomApiUrl();
-  const form = generateFormData(promptArray[0], images.davin);
+  const form = generateFormData(promptArray[0], images.tsvi);
   console.log('form: ', form)
   try {
     const response = await fetch(apiUrl, {
